@@ -3,6 +3,7 @@ import { Container } from "./page.styles"
 import { CoverBlock } from '../../data/cover-block'
 import { Cover } from '../cover'
 import { PAGE_RATIO } from '../../data/constants'
+import { CoverBorderPosition } from '../cover-border/cover-borders.component'
 
 interface PageProps {
     height: number
@@ -16,8 +17,13 @@ export const Page: React.FC<PageProps> = ({ width, height, coverBlocks }) => {
     return (
         <Container style={{ height, width: actualWidth }}>
             {
-                coverBlocks.map(block => (
-                    <Cover size={coverMinSize * block.scale} image={block.image} />
+                coverBlocks.map((block, index) => (
+                    <Cover
+                        size={coverMinSize * block.scale}
+                        image={block.image}
+                        borders={index == 9 ? [CoverBorderPosition.TOP, CoverBorderPosition.LEFT, CoverBorderPosition.RIGHT] : undefined}
+                        borderText='NOVEMBER'
+                    />
                 ))
             }
         </Container>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Container } from "./cover.styles"
+import { Container, NotesContainer, TextNote, TitleText } from "./cover.styles"
 import { CoverBorders } from "../cover-border"
 import { DATE_BORDER_WIDTH} from "../../data/constants"
 import { CoverBorderPosition } from "../cover-border/cover-borders.component"
@@ -24,6 +24,11 @@ export const Cover: React.FC<CoverProps> = ({ image, minSize, scale, borders, bo
                     text={borderText}
                 />
             )}
+            <TitleText scale={scale}>ALBUM TITLE</TitleText>
+            {scale > 3 && (<NotesContainer scale={scale}>
+                <TextNote scale={scale}>FIRST PLAY: 12 / 05 / 2022</TextNote>
+                <TextNote scale={scale}># PLAYS: 126</TextNote>
+            </NotesContainer>)}
         </Container>
     )
 }

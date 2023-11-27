@@ -17,6 +17,7 @@ export const PageViewer: React.FC<PageViewProps> = ({ height, coverBlocks }) => 
     const pages: CoverBlock[][] = useMemo(() => {
         var pages: CoverBlock[][] = []
         var page = 0
+        var blockCount = 0
         coverBlocks.forEach((block, index) => {
             if (pages[page] == undefined) {
                 pages.push([block])
@@ -24,9 +25,12 @@ export const PageViewer: React.FC<PageViewProps> = ({ height, coverBlocks }) => 
                 pages[page].push(block)
             }
 
-            if (index != 0 && index % (pageCoverLimit-1) == 0) {
+            if (blockCount > pageCoverLimit) {
                 page++
+                blockCount = 0
             }
+
+            blockCount += block.scale * block.scale;
         })
         return pages
     }, [coverBlocks])

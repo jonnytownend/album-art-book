@@ -8,7 +8,7 @@ export function getPlaceholderData(count: number, firstScaleVariation: number = 
             scale = index % firstScaleVariation == 0 ? 2 : scale
         }
         if (secondScaleVariation > 0) {
-            scale = index % secondScaleVariation == 0 ? 3 : scale
+            scale = index % secondScaleVariation == 0 ? 4 : scale
         }
         return {
             image,

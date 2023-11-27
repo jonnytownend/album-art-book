@@ -7,4 +7,5 @@ export const Container = styled.div<{ size: number }>`
     height: calc(width)
     box-shadow: 0px 0px 1em grey;
     background-color: white;
+    overflow: hidden;
 `

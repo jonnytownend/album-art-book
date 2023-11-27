@@ -1,15 +1,10 @@
-import { getPlaceholderCoverImagesByCount } from './utils/cover-image-placeholder-loader'
 import { PageViewer } from './components/page-viewer'
-import { CoverBlock } from './data/cover-block'
+import { getPlaceholderData } from './utils/get-placeholder-data'
 
 function App() {
-  const coverBlocks: CoverBlock[] = getPlaceholderCoverImagesByCount(100).map((image, index) => ({
-    image,
-    scale: 1
-  }))
   return (
     <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'flex-start', justifyContent: 'center', backgroundColor: 'lightgray' }}>
-      <PageViewer height={window.innerHeight} coverBlocks={coverBlocks} />
+      <PageViewer height={window.innerHeight} coverBlocks={getPlaceholderData(100, 10, 20)} />
     </div>
   )
 }

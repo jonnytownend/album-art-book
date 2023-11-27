@@ -6,18 +6,19 @@ import { CoverBorderPosition } from "../cover-border/cover-borders.component"
 
 interface CoverProps {
     image: string
-    size: number
+    minSize: number
+    scale: number
     borders?: CoverBorderPosition[]
     borderText?: string
 }
 
 
-export const Cover: React.FC<CoverProps> = ({ image, size, borders, borderText }) => {
+export const Cover: React.FC<CoverProps> = ({ image, minSize, scale, borders, borderText }) => {
     return (
-        <Container size={size} image={image}>
+        <Container size={minSize * scale} gridSpan={scale} image={image}>
             {!!borders && (
                 <CoverBorders
-                    coverSize={size}
+                    coverSize={minSize * scale}
                     width={DATE_BORDER_WIDTH}
                     borders={borders}
                     text={borderText}

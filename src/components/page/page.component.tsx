@@ -15,13 +15,13 @@ export const Page: React.FC<PageProps> = ({ width, height, coverBlocks }) => {
     const actualWidth = width ?? PAGE_RATIO * height // Default A4 paper size
     const coverMinSize = actualWidth / 4
     return (
-        <Container style={{ height, width: actualWidth }}>
+        <Container size={coverMinSize} style={{ height, width: actualWidth }}>
             {
-                coverBlocks.map((block, index) => (
+                coverBlocks.map(block => (
                     <Cover
-                        size={coverMinSize * block.scale}
+                        minSize={coverMinSize}
+                        scale={block.scale}
                         image={block.image}
-                        borders={index == 9 ? [CoverBorderPosition.TOP, CoverBorderPosition.LEFT, CoverBorderPosition.RIGHT] : undefined}
                         borderText='NOVEMBER'
                     />
                 ))

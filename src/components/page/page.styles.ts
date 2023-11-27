@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    height: calc(width * 0.5);
+export const Container = styled.div<{ size: number }>`
+    display: grid;
+    grid-template-columns: repeat(4, ${p => p.size}px);
+    grid-template-rows: repeat(6, ${p => p.size}px);
+    height: calc(width)
     box-shadow: 0px 0px 1em grey;
     background-color: white;
 `

@@ -1,8 +1,10 @@
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 
-export const Container = styled.div<{ size: number, image: string }>`
+export const Container = styled.div<{ size: number, gridSpan: number, image: string }>`
     position: relative;
+    grid-column-end: span ${p => p.gridSpan};
+    grid-row-end: span ${p => p.gridSpan};
     width: ${p => p.size}px;
     height: ${p => p.size}px;
     background-image: url(${p => p.image});

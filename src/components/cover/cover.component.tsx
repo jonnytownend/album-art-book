@@ -10,10 +10,11 @@ interface CoverProps {
     scale: number
     borders?: CoverBorderPosition[]
     borderText?: string
+    date?: Date
 }
 
 
-export const Cover: React.FC<CoverProps> = ({ image, minSize, scale, borders, borderText }) => {
+export const Cover: React.FC<CoverProps> = ({ image, minSize, scale, borders, borderText, date }) => {
     return (
         <Container size={minSize * scale} gridSpan={scale} image={image}>
             {!!borders && (
@@ -26,7 +27,7 @@ export const Cover: React.FC<CoverProps> = ({ image, minSize, scale, borders, bo
             )}
             <TitleText scale={scale}>ALBUM TITLE</TitleText>
             {scale > 3 && (<NotesContainer scale={scale}>
-                <TextNote scale={scale}>FIRST PLAY: 12 / 05 / 2022</TextNote>
+                <TextNote scale={scale}>FIRST PLAY: {date?.toLocaleDateString()}</TextNote>
                 <TextNote scale={scale}># PLAYS: 126</TextNote>
             </NotesContainer>)}
         </Container>

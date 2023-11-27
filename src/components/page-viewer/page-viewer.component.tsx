@@ -9,7 +9,7 @@ interface PageViewProps {
     coverBlocks: CoverBlock[]
 }
 
-const pageCoverLimit = 24
+const PAGE_COVER_LIMIT = 24
 
 export const PageViewer: React.FC<PageViewProps> = ({ height, coverBlocks }) => {
     const pageWidth = PAGE_RATIO * height
@@ -19,18 +19,19 @@ export const PageViewer: React.FC<PageViewProps> = ({ height, coverBlocks }) => 
         var page = 0
         var blockCount = 0
         coverBlocks.forEach((block, index) => {
-            if (pages[page] == undefined) {
-                pages.push([block])
-            } else {
-                pages[page].push(block)
-            }
-
-            if (blockCount > pageCoverLimit) {
+            let blockSize = block.scale * block.scale
+            if (blockCount + blockSize > PAGE_COVER_LIMIT) {
                 page++
                 blockCount = 0
             }
 
-            blockCount += block.scale * block.scale;
+            if (pages[page] == undefined) {
+                pages[page] = [block]
+            } else {
+                pages[page].push(block)
+            }
+
+            blockCount += blockSize
         })
         return pages
     }, [coverBlocks])
